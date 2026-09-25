@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Space launches</string>
+    <string name="action_back">Back</string>
+    <string name="action_toggle_theme">Toggle theme</string>
+    <string name="status_go">Go for launch</string>
+    <string name="status_tbd">Date to be determined</string>
+    <string name="status_success">Launch successful</string>
+    <string name="status_failure">Launch failure</string>
+    <string name="status_tbc">Date to be confirmed</string>
+    <string name="status_unknown">Status unknown</string>
+    <string name="detail_net">Launch date</string>
+    <string name="detail_window">Launch window</string>
+    <string name="detail_probability">Probability</string>
+    <string name="detail_rocket">Rocket</string>
+    <string name="detail_mission">Mission</string>
+    <string name="detail_mission_type">Mission type</string>
+    <string name="detail_orbit">Orbit</string>
+    <string name="detail_provider">Agency</string>
+    <string name="detail_pad">Launch pad</string>
+    <string name="agency_type">Type</string>
+    <string name="agency_country">Country</string>
+    <string name="agency_founded">Founded</string>
+    <string name="agency_administrator">Administrator</string>
+    <string name="agency_launches_total">Launches total</string>
+    <string name="agency_launches_success">Successful</string>
+    <string name="agency_launches_failure">Failures</string>
+    <string name="agency_launches_pending">Planned</string>
+    <string name="pad_location">Location</string>
+    <string name="pad_country">Country</string>
+    <string name="pad_coordinates">Coordinates</string>
+    <string name="pad_launches_total">Launches total</string>
+</resources>
