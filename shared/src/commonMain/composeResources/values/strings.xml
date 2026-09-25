@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Космические запуски</string>
     <string name="action_back">Назад</string>
+    <string name="action_toggle_theme">Сменить тему</string>
     <string name="status_go">К пуску готов</string>
     <string name="status_tbd">Дата уточняется</string>
     <string name="status_success">Успешный пуск</string>
