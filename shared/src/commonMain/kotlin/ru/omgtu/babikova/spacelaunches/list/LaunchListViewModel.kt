@@ -22,7 +22,7 @@ class LaunchListViewModel(
 
     init {
         viewModelScope.launch {
-            val items = repository.getLaunches("").map { it.toCardUi() }
+            val items = repository.getLaunches().map { it.toCardUi() }
             _state.update { it.copy(items = items) }
         }
     }

@@ -2,7 +2,7 @@ package ru.omgtu.babikova.spacelaunches.domain
 
 interface LaunchRepository {
 
-    suspend fun getLaunches(query: String): List<Launch>
+    suspend fun getLaunches(query: String = ""): List<Launch>
 
     suspend fun getLaunch(id: String): Launch
 

@@ -1,35 +1,54 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM).
+# Космические запуски — Compose Multiplatform
 
-* [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Каталог космических запусков: список запусков с фотографиями ракет, деталь запуска с миссией, переходы
+к агентству и к стартовой площадке. Веха 1 «Каркас»: сети нет, данные — моки по форме
+[Launch Library 2](https://ll.thespacedevs.com/2.2.0/swagger/) (22 запуска, 13 агентств, 20 площадок).
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+Ведущий таргет вехи — desktop. Зачётные таргеты — desktop и Android.
 
-### Running the apps
+## Команды
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+```bash
+./gradlew :desktopApp:run                        # desktop
+./gradlew :desktopApp:run -Plocale=en            # desktop на второй локали
+./gradlew :androidApp:assembleDebug              # Android
+./gradlew :webApp:wasmJsBrowserDevelopmentRun    # web (бонус)
+./gradlew :shared:linkDebugFrameworkIosSimulatorArm64   # iOS: сборка фреймворка (бонус)
+python3 tools/check-strings.py                   # паритет ключей локалей
+```
 
-- Android app: `./gradlew :androidApp:assembleDebug`
-- Desktop app:
-  - Hot reload: `./gradlew :desktopApp:hotRun --auto`
-  - Standard run: `./gradlew :desktopApp:run`
-- Web app:
-  - Wasm target (faster, modern browsers): `./gradlew :webApp:wasmJsBrowserDevelopmentRun`
-  - JS target (slower, supports older browsers): `./gradlew :webApp:jsBrowserDevelopmentRun`
-- iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+Отчёт компилятора Compose (стабильность типов и пропуск рекомпозиции) появляется после сборки в
+`shared/build/compose_compiler/`.
 
----
+## Структура
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://kotlinlang.org/compose-multiplatform/),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
+```
+shared/src/commonMain/kotlin/ru/omgtu/babikova/spacelaunches/
+  App.kt                    корень: тема, репозиторий, навигатор, фабрики ViewModel
+  Screen.kt                 маршруты (sealed interface)
+  domain/                   модели и интерфейс репозитория
+  data/                     моки и реализация репозитория
+  list/ detail/ agency/ pad/ состояние, намерения, ViewModel и фабрики экранов
+  ui/AppTheme.kt            светлая и тёмная палитры — единственное место с цветами
+  ui/model/                 UI-модели и форматирование
+  ui/navigation/            Navigator и AppNavDisplay (Navigation 3)
+  ui/screens/               вёрстка экранов
+  ui/components/            переиспользуемые элементы
+shared/src/commonMain/composeResources/
+  values/ values-en/        подписи интерфейса
+  drawable/                 фотографии ракет и иконки
+tools/check-strings.py
+docs/lab-1/                 отчёт
+```
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [YouTrack](https://youtrack.jetbrains.com/newIssue?project=CMP).
+## Таблица приёмки
+
+| # | Делаю | Вижу |
+|---|---|---|
+| 1 | `./gradlew :desktopApp:run`, скроллю список | 22 карточки, фото ракет на месте, у каждой статус, дата и агентство |
+| 2 | прокручиваю список вниз, открываю карточку, жму «назад» | деталь въезжает справа, назад уезжает вправо; список остаётся на той же позиции |
+| 3 | на детали жму агентство, потом площадку | открываются экраны агентства и площадки, «назад» ведёт на предыдущий экран, а не в список |
+| 4 | жму иконку темы в шапке | темнеют шапка, фон и карточки; цвет статуса остаётся смысловым, подписи читаемы |
+| 5 | `python3 tools/check-strings.py` | `values-en: 0 расхождений, ключей 30` |
+| 6 | `./gradlew :desktopApp:run -Plocale=en` | интерфейс на английском, данные каталога остаются на языке источника |
+| 7 | смотрю `shared/build/compose_compiler/*composables.txt` | экраны помечены `restartable skippable` |
