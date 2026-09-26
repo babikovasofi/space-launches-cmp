@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Космические запуски</string>
+    <string name="action_back">Назад</string>
+    <string name="action_toggle_theme">Сменить тему</string>
+    <string name="detail_net">Дата пуска</string>
+    <string name="detail_rocket">Ракета</string>
+    <string name="detail_mission">Миссия</string>
+    <string name="detail_mission_type">Тип миссии</string>
+    <string name="detail_orbit">Орбита</string>
+    <string name="detail_provider">Агентство</string>
+    <string name="detail_pad">Площадка</string>
+    <string name="agency_type">Тип</string>
+    <string name="agency_country">Страна</string>
+    <string name="agency_founded">Год основания</string>
+    <string name="agency_launches_total">Всего пусков</string>
+    <string name="pad_location">Расположение</string>
+    <string name="pad_country">Страна</string>
+    <string name="pad_coordinates">Координаты</string>
+    <string name="pad_launches_total">Всего пусков</string>
+</resources>

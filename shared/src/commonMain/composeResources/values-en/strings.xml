@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Space launches</string>
+    <string name="action_back">Back</string>
+    <string name="action_toggle_theme">Toggle theme</string>
+    <string name="detail_net">Launch date</string>
+    <string name="detail_rocket">Rocket</string>
+    <string name="detail_mission">Mission</string>
+    <string name="detail_mission_type">Mission type</string>
+    <string name="detail_orbit">Orbit</string>
+    <string name="detail_provider">Agency</string>
+    <string name="detail_pad">Launch pad</string>
+    <string name="agency_type">Type</string>
+    <string name="agency_country">Country</string>
+    <string name="agency_founded">Founded</string>
+    <string name="agency_launches_total">Launches total</string>
+    <string name="pad_location">Location</string>
+    <string name="pad_country">Country</string>
+    <string name="pad_coordinates">Coordinates</string>
+    <string name="pad_launches_total">Launches total</string>
+</resources>
