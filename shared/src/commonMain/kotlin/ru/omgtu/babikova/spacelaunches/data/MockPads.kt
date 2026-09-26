@@ -7,7 +7,6 @@ internal val mockPads = listOf(
     Pad(
         id = 20,
         name = "31/6",
-        description = "",
         latitude = "45.996034",
         longitude = "63.564003",
         location = PadLocation(15, "Baikonur Cosmodrome, Republic of Kazakhstan", "KAZ"),
@@ -17,7 +16,6 @@ internal val mockPads = listOf(
     Pad(
         id = 21,
         name = "Launch Area 95A",
-        description = "",
         latitude = "40.969117",
         longitude = "100.343333",
         location = PadLocation(17, "Jiuquan Satellite Launch Center, People's Republic of China", "CHN"),
@@ -27,7 +25,6 @@ internal val mockPads = listOf(
     Pad(
         id = 22,
         name = "Launch Area 94 (SLS-2 / 603)",
-        description = "",
         latitude = "40.960482",
         longitude = "100.298059",
         location = PadLocation(17, "Jiuquan Satellite Launch Center, People's Republic of China", "CHN"),
@@ -37,7 +34,6 @@ internal val mockPads = listOf(
     Pad(
         id = 29,
         name = "Space Launch Complex 41",
-        description = "",
         latitude = "28.58341025",
         longitude = "-80.58303644",
         location = PadLocation(12, "Cape Canaveral SFS, FL, USA", "USA"),
@@ -47,7 +43,6 @@ internal val mockPads = listOf(
     Pad(
         id = 37,
         name = "Launch Area 91 (SLS-1 / 921)",
-        description = "",
         latitude = "40.957893",
         longitude = "100.290944",
         location = PadLocation(17, "Jiuquan Satellite Launch Center, People's Republic of China", "CHN"),
@@ -57,7 +52,6 @@ internal val mockPads = listOf(
     Pad(
         id = 65,
         name = "Rocket Lab Launch Complex 1A",
-        description = "",
         latitude = "-39.262833",
         longitude = "177.864469",
         location = PadLocation(10, "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand", "NZL"),
@@ -67,7 +61,6 @@ internal val mockPads = listOf(
     Pad(
         id = 67,
         name = "Ariane Launch Area 4",
-        description = "ELA-4, is a launch pad and associated facilities at the Centre Spatial Guyanais in French Guiana. The complex is composed of a launch pad with mobile gantry, an horizontal assembly building and a dedicated launch operations building. ELA-4 is operated by Arianespace as part of the Ariane 6 program.",
         latitude = "5.256319",
         longitude = "-52.786838",
         location = PadLocation(13, "Guiana Space Centre, French Guiana", "GUF"),
@@ -77,7 +70,6 @@ internal val mockPads = listOf(
     Pad(
         id = 79,
         name = "Rocket Lab Launch Complex 2 (Launch Area 0 C)",
-        description = "",
         latitude = "37.833262",
         longitude = "-75.488235",
         location = PadLocation(21, "Wallops Flight Facility, Virginia, USA", "USA"),
@@ -87,7 +79,6 @@ internal val mockPads = listOf(
     Pad(
         id = 80,
         name = "Space Launch Complex 40",
-        description = "",
         latitude = "28.56194122",
         longitude = "-80.57735736",
         location = PadLocation(12, "Cape Canaveral SFS, FL, USA", "USA"),
@@ -97,7 +88,6 @@ internal val mockPads = listOf(
     Pad(
         id = 82,
         name = "Satish Dhawan Space Centre Second Launch Pad",
-        description = "The second launch pad was built between 1999 and 2003. It became functional in 2005 and has since been used for various rockets. This launch pad supports missions by PSLV, GSLV, LVM3 rockets and is even envisioned for India's future crewed spaceflight.",
         latitude = "13.7199",
         longitude = "80.2304",
         location = PadLocation(14, "Satish Dhawan Space Centre, India", "IND"),
@@ -107,7 +97,6 @@ internal val mockPads = listOf(
     Pad(
         id = 89,
         name = "Haiyang offshore launch location",
-        description = "",
         latitude = "36.631333",
         longitude = "121.198361",
         location = PadLocation(185, "Haiyang Oriental Spaceport", "CHN"),
@@ -117,7 +106,6 @@ internal val mockPads = listOf(
     Pad(
         id = 90,
         name = "West Texas Suborbital Launch Site/ Corn Ranch",
-        description = "",
         latitude = "31.422878",
         longitude = "-104.757121",
         location = PadLocation(29, "Corn Ranch, Van Horn, TX, USA", "USA"),
@@ -127,7 +115,6 @@ internal val mockPads = listOf(
     Pad(
         id = 121,
         name = "Launch Complex 36A",
-        description = "",
         latitude = "28.4705556",
         longitude = "-80.542194",
         location = PadLocation(12, "Cape Canaveral SFS, FL, USA", "USA"),
@@ -137,7 +124,6 @@ internal val mockPads = listOf(
     Pad(
         id = 151,
         name = "Launch Area 130",
-        description = "",
         latitude = "40.8182",
         longitude = "100.22514",
         location = PadLocation(17, "Jiuquan Satellite Launch Center, People's Republic of China", "CHN"),
@@ -147,7 +133,6 @@ internal val mockPads = listOf(
     Pad(
         id = 185,
         name = "Rocket Lab Launch Complex 1B",
-        description = "",
         latitude = "-39.262833",
         longitude = "177.864469",
         location = PadLocation(10, "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand", "NZL"),
@@ -157,7 +142,6 @@ internal val mockPads = listOf(
     Pad(
         id = 188,
         name = "Orbital Launch Pad 1",
-        description = "The first launch and landing pad of the full version of the combined SpaceX Starship and Superheavy booster. First used for launch in April 2023. The launch mount itself is named Orbital Launch Mount A.",
         latitude = "25.9962",
         longitude = "-97.154423",
         location = PadLocation(143, "SpaceX Starbase, TX, USA", "USA"),
@@ -167,7 +151,6 @@ internal val mockPads = listOf(
     Pad(
         id = 192,
         name = "LC-2",
-        description = "",
         latitude = "34.431867",
         longitude = "127.535069",
         location = PadLocation(9, "Naro Space Center, South Korea", "KOR"),
@@ -177,7 +160,6 @@ internal val mockPads = listOf(
     Pad(
         id = 209,
         name = "Yoshinobu Launch Complex LP-2",
-        description = "",
         latitude = "30.400938",
         longitude = "130.97564",
         location = PadLocation(26, "Tanegashima Space Center, Japan", "JPN"),
@@ -187,7 +169,6 @@ internal val mockPads = listOf(
     Pad(
         id = 218,
         name = "Commercial LC-1",
-        description = "",
         latitude = "19.597275",
         longitude = "110.930753",
         location = PadLocation(8, "Wenchang Space Launch Site, People's Republic of China", "CHN"),
@@ -197,7 +178,6 @@ internal val mockPads = listOf(
     Pad(
         id = 235,
         name = "Orbital Launch Pad 2",
-        description = "The second launch and landing pad of the full version of the combined SpaceX Starship and Superheavy booster. To be first used for launch in 2025 with version 3 of Starship and the Superheavy booster. The launch mount itself is named Orbital Launch Mount B.",
         latitude = "25.99677",
         longitude = "-97.15799",
         location = PadLocation(143, "SpaceX Starbase, TX, USA", "USA"),

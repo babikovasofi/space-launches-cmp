@@ -14,11 +14,7 @@
     <string name="agency_type">Тип</string>
     <string name="agency_country">Страна</string>
     <string name="agency_founded">Год основания</string>
-    <string name="agency_administrator">Руководство</string>
     <string name="agency_launches_total">Всего пусков</string>
-    <string name="agency_launches_success">Успешных</string>
-    <string name="agency_launches_failure">Аварий</string>
-    <string name="agency_launches_pending">Запланировано</string>
     <string name="pad_location">Расположение</string>
     <string name="pad_country">Страна</string>
     <string name="pad_coordinates">Координаты</string>

@@ -14,11 +14,7 @@
     <string name="agency_type">Type</string>
     <string name="agency_country">Country</string>
     <string name="agency_founded">Founded</string>
-    <string name="agency_administrator">Administrator</string>
     <string name="agency_launches_total">Launches total</string>
-    <string name="agency_launches_success">Successful</string>
-    <string name="agency_launches_failure">Failures</string>
-    <string name="agency_launches_pending">Planned</string>
     <string name="pad_location">Location</string>
     <string name="pad_country">Country</string>
     <string name="pad_coordinates">Coordinates</string>
