@@ -8,32 +8,16 @@ data class LaunchDetailUi(
     val statusName: String,
     val statusDescription: String,
     val launchTime: String,
-    val window: String,
-    val probability: String?,
     val rocketFullName: String,
     val rocketConfigurationId: Int,
-    val provider: ProviderUi,
-    val pad: PadUi,
-    val mission: MissionUi?,
-)
-
-data class ProviderUi(
-    val id: Int,
-    val name: String,
-    val type: String,
-)
-
-data class PadUi(
-    val id: Int,
-    val name: String,
-    val location: String,
-)
-
-data class MissionUi(
-    val name: String,
-    val type: String,
-    val orbit: String?,
-    val description: String,
+    val providerId: Int,
+    val providerName: String,
+    val padId: Int,
+    val padName: String,
+    val missionName: String?,
+    val missionType: String?,
+    val missionOrbit: String?,
+    val missionDescription: String?,
 )
 
 fun Launch.toDetailUi() = LaunchDetailUi(
@@ -42,18 +26,14 @@ fun Launch.toDetailUi() = LaunchDetailUi(
     statusName = status.name,
     statusDescription = status.description,
     launchTime = formatLaunchTime(net),
-    window = "${formatLaunchTime(windowStart)} — ${formatLaunchTime(windowEnd)}",
-    probability = probability?.let { "$it %" },
     rocketFullName = rocket.fullName,
     rocketConfigurationId = rocket.id,
-    provider = ProviderUi(provider.id, provider.name, provider.type),
-    pad = PadUi(pad.id, pad.name, pad.location.name),
-    mission = mission?.let {
-        MissionUi(
-            name = it.name,
-            type = it.type,
-            orbit = it.orbit?.let { orbit -> "${orbit.name} (${orbit.abbrev})" },
-            description = it.description,
-        )
-    },
+    providerId = provider.id,
+    providerName = provider.name,
+    padId = pad.id,
+    padName = pad.name,
+    missionName = mission?.name,
+    missionType = mission?.type,
+    missionOrbit = mission?.orbit?.let { "${it.name} (${it.abbrev})" },
+    missionDescription = mission?.description,
 )

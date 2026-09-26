@@ -3,8 +3,6 @@
     <string name="action_back">Back</string>
     <string name="action_toggle_theme">Toggle theme</string>
     <string name="detail_net">Launch date</string>
-    <string name="detail_window">Launch window</string>
-    <string name="detail_probability">Probability</string>
     <string name="detail_rocket">Rocket</string>
     <string name="detail_mission">Mission</string>
     <string name="detail_mission_type">Mission type</string>

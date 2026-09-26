@@ -24,10 +24,8 @@ import ru.omgtu.babikova.spacelaunches.resources.detail_mission_type
 import ru.omgtu.babikova.spacelaunches.resources.detail_net
 import ru.omgtu.babikova.spacelaunches.resources.detail_orbit
 import ru.omgtu.babikova.spacelaunches.resources.detail_pad
-import ru.omgtu.babikova.spacelaunches.resources.detail_probability
 import ru.omgtu.babikova.spacelaunches.resources.detail_provider
 import ru.omgtu.babikova.spacelaunches.resources.detail_rocket
-import ru.omgtu.babikova.spacelaunches.resources.detail_window
 import ru.omgtu.babikova.spacelaunches.ui.components.CardSurface
 import ru.omgtu.babikova.spacelaunches.ui.components.FactRow
 import ru.omgtu.babikova.spacelaunches.ui.components.LinkRow
@@ -72,14 +70,10 @@ fun LaunchDetailScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 FactRow(stringResource(Res.string.detail_net), launch.launchTime)
-                FactRow(stringResource(Res.string.detail_window), launch.window)
-                launch.probability?.let {
-                    FactRow(stringResource(Res.string.detail_probability), it)
-                }
                 FactRow(stringResource(Res.string.detail_rocket), launch.rocketFullName)
             }
         }
-        launch.mission?.let { mission ->
+        if (launch.missionName != null) {
             CardSurface(modifier = Modifier.fillMaxWidth()) {
                 Column(
                     modifier = Modifier.padding(12.dp),
@@ -90,30 +84,34 @@ fun LaunchDetailScreen(
                         style = MaterialTheme.typography.titleMedium,
                     )
                     Text(
-                        text = mission.name,
+                        text = launch.missionName,
                         style = MaterialTheme.typography.bodyLarge,
                     )
-                    FactRow(stringResource(Res.string.detail_mission_type), mission.type)
-                    mission.orbit?.let {
+                    launch.missionType?.let {
+                        FactRow(stringResource(Res.string.detail_mission_type), it)
+                    }
+                    launch.missionOrbit?.let {
                         FactRow(stringResource(Res.string.detail_orbit), it)
                     }
-                    Text(
-                        text = mission.description,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
+                    launch.missionDescription?.let {
+                        Text(
+                            text = it,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
                 }
             }
         }
         LinkRow(
             label = stringResource(Res.string.detail_provider),
-            value = launch.provider.name,
-            onClick = { onIntent(LaunchDetailIntent.ProviderClicked(launch.provider.id)) },
+            value = launch.providerName,
+            onClick = { onIntent(LaunchDetailIntent.ProviderClicked(launch.providerId)) },
         )
         LinkRow(
             label = stringResource(Res.string.detail_pad),
-            value = launch.pad.name,
-            onClick = { onIntent(LaunchDetailIntent.PadClicked(launch.pad.id)) },
+            value = launch.padName,
+            onClick = { onIntent(LaunchDetailIntent.PadClicked(launch.padId)) },
         )
     }
 }

@@ -3,8 +3,6 @@
     <string name="action_back">Назад</string>
     <string name="action_toggle_theme">Сменить тему</string>
     <string name="detail_net">Дата пуска</string>
-    <string name="detail_window">Окно пуска</string>
-    <string name="detail_probability">Вероятность</string>
     <string name="detail_rocket">Ракета</string>
     <string name="detail_mission">Миссия</string>
     <string name="detail_mission_type">Тип миссии</string>
