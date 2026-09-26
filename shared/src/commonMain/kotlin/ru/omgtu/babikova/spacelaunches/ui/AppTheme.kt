@@ -40,11 +40,6 @@ private val DarkColors = darkColorScheme(
     outline = Color(0xFF8D9199),
 )
 
-private val StatusSuccess = Color(0xFF1B7F4B)
-private val StatusFailure = Color(0xFFB3261E)
-private val StatusGo = Color(0xFF1B5E9E)
-private val StatusPlanned = Color(0xFF7A6024)
-
 @Composable
 fun AppTheme(darkTheme: Boolean, content: @Composable () -> Unit) {
     MaterialTheme(
@@ -53,9 +48,3 @@ fun AppTheme(darkTheme: Boolean, content: @Composable () -> Unit) {
     )
 }
 
-fun launchStatusColor(statusId: Int): Color = when (statusId) {
-    1 -> StatusGo
-    3 -> StatusSuccess
-    4 -> StatusFailure
-    else -> StatusPlanned
-}

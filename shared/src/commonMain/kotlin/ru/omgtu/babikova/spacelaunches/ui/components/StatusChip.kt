@@ -8,21 +8,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import ru.omgtu.babikova.spacelaunches.ui.launchStatusColor
 
 @Composable
 fun StatusChip(
-    statusId: Int,
     statusName: String,
     modifier: Modifier = Modifier,
 ) {
     Text(
         text = statusName,
         style = MaterialTheme.typography.labelMedium,
-        color = MaterialTheme.colorScheme.surface,
+        color = MaterialTheme.colorScheme.onSecondaryContainer,
         modifier = modifier
             .clip(MaterialTheme.shapes.small)
-            .background(launchStatusColor(statusId))
+            .background(MaterialTheme.colorScheme.secondaryContainer)
             .padding(horizontal = 8.dp, vertical = 4.dp),
     )
 }

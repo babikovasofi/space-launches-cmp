@@ -60,7 +60,7 @@ fun LaunchDetailScreen(
             text = launch.name,
             style = MaterialTheme.typography.headlineSmall,
         )
-        StatusChip(statusId = launch.statusId, statusName = launch.statusName)
+        StatusChip(statusName = launch.statusName)
         Text(
             text = launch.statusDescription,
             style = MaterialTheme.typography.bodyMedium,

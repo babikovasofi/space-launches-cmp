@@ -5,7 +5,6 @@ import ru.omgtu.babikova.spacelaunches.domain.Launch
 data class LaunchDetailUi(
     val id: String,
     val name: String,
-    val statusId: Int,
     val statusName: String,
     val statusDescription: String,
     val launchTime: String,
@@ -40,7 +39,6 @@ data class MissionUi(
 fun Launch.toDetailUi() = LaunchDetailUi(
     id = id,
     name = name,
-    statusId = status.id,
     statusName = status.name,
     statusDescription = status.description,
     launchTime = formatLaunchTime(net),
