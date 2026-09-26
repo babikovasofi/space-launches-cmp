@@ -62,7 +62,7 @@ fun LaunchCard(
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                StatusChip(statusId = card.statusId)
+                StatusChip(statusId = card.statusId, statusName = card.statusName)
             }
         }
     }

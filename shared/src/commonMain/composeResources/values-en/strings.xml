@@ -2,12 +2,6 @@
     <string name="app_name">Space launches</string>
     <string name="action_back">Back</string>
     <string name="action_toggle_theme">Toggle theme</string>
-    <string name="status_go">Go for launch</string>
-    <string name="status_tbd">Date to be determined</string>
-    <string name="status_success">Launch successful</string>
-    <string name="status_failure">Launch failure</string>
-    <string name="status_tbc">Date to be confirmed</string>
-    <string name="status_unknown">Status unknown</string>
     <string name="detail_net">Launch date</string>
     <string name="detail_window">Launch window</string>
     <string name="detail_probability">Probability</string>
