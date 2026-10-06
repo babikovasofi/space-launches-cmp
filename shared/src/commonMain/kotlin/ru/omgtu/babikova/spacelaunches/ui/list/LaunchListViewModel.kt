@@ -2,6 +2,7 @@ package ru.omgtu.babikova.spacelaunches.ui.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,16 +21,28 @@ class LaunchListViewModel(
     private val _state = MutableStateFlow(LaunchListState())
     val state: StateFlow<LaunchListState> = _state.asStateFlow()
 
+    private var searchJob: Job? = null
+
     init {
-        viewModelScope.launch {
-            val items = repository.getLaunches().map { it.toCardUi() }
-            _state.update { it.copy(items = items) }
-        }
+        search(_state.value.query)
     }
 
     fun onIntent(intent: LaunchListIntent) {
         when (intent) {
+            is LaunchListIntent.QueryChanged -> {
+                _state.update { it.copy(query = intent.value) }
+                search(intent.value)
+            }
+
             is LaunchListIntent.CardClicked -> navigator.addToBackStack(Screen.Detail(intent.id))
+        }
+    }
+
+    private fun search(query: String) {
+        searchJob?.cancel()
+        searchJob = viewModelScope.launch {
+            val items = repository.getLaunches(query).map { it.toCardUi() }
+            _state.update { it.copy(items = items) }
         }
     }
 }
