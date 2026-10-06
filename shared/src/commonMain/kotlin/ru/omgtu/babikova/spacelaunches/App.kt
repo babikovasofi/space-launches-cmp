@@ -11,12 +11,12 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import ru.omgtu.babikova.spacelaunches.agency.AgencyViewModelFactory
+import ru.omgtu.babikova.spacelaunches.ui.agency.AgencyViewModelFactory
 import ru.omgtu.babikova.spacelaunches.data.LaunchRepositoryImpl
-import ru.omgtu.babikova.spacelaunches.detail.LaunchDetailViewModelFactory
+import ru.omgtu.babikova.spacelaunches.ui.detail.LaunchDetailViewModelFactory
 import ru.omgtu.babikova.spacelaunches.domain.LaunchRepository
-import ru.omgtu.babikova.spacelaunches.list.LaunchListViewModelFactory
-import ru.omgtu.babikova.spacelaunches.pad.PadViewModelFactory
+import ru.omgtu.babikova.spacelaunches.ui.list.LaunchListViewModelFactory
+import ru.omgtu.babikova.spacelaunches.ui.pad.PadViewModelFactory
 import ru.omgtu.babikova.spacelaunches.resources.Res
 import ru.omgtu.babikova.spacelaunches.resources.action_toggle_theme
 import ru.omgtu.babikova.spacelaunches.resources.ic_theme

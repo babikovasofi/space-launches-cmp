@@ -17,7 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import ru.omgtu.babikova.spacelaunches.detail.LaunchDetailIntent
+import ru.omgtu.babikova.spacelaunches.ui.detail.LaunchDetailIntent
 import ru.omgtu.babikova.spacelaunches.resources.Res
 import ru.omgtu.babikova.spacelaunches.resources.detail_mission
 import ru.omgtu.babikova.spacelaunches.resources.detail_mission_type

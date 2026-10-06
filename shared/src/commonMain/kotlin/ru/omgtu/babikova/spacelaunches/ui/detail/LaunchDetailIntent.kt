@@ -1,4 +1,4 @@
-package ru.omgtu.babikova.spacelaunches.detail
+package ru.omgtu.babikova.spacelaunches.ui.detail
 
 sealed interface LaunchDetailIntent {
     data class ProviderClicked(val id: Int) : LaunchDetailIntent

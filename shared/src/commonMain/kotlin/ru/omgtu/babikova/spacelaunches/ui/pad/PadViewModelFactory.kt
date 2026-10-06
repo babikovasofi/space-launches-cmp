@@ -1,4 +1,4 @@
-package ru.omgtu.babikova.spacelaunches.pad
+package ru.omgtu.babikova.spacelaunches.ui.pad
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

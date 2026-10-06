@@ -1,4 +1,4 @@
-package ru.omgtu.babikova.spacelaunches.list
+package ru.omgtu.babikova.spacelaunches.ui.list
 
 import ru.omgtu.babikova.spacelaunches.ui.model.LaunchCardUi
 

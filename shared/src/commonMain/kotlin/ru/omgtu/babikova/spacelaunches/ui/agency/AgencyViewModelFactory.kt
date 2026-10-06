@@ -1,4 +1,4 @@
-package ru.omgtu.babikova.spacelaunches.agency
+package ru.omgtu.babikova.spacelaunches.ui.agency
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

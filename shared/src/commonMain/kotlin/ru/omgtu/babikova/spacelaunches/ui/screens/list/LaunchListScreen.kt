@@ -7,8 +7,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ru.omgtu.babikova.spacelaunches.list.LaunchListIntent
-import ru.omgtu.babikova.spacelaunches.list.LaunchListState
+import ru.omgtu.babikova.spacelaunches.ui.list.LaunchListIntent
+import ru.omgtu.babikova.spacelaunches.ui.list.LaunchListState
 import ru.omgtu.babikova.spacelaunches.ui.components.LaunchCard
 
 @Composable
