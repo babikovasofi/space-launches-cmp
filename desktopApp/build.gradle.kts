@@ -26,3 +26,11 @@ compose.desktop {
         }
     }
 }
+
+val runLocale = providers.gradleProperty("locale").orNull
+
+tasks.withType<JavaExec>().configureEach {
+    if (name == "run" && runLocale != null) {
+        doFirst { jvmArgs("-Duser.language=$runLocale", "-Duser.country=") }
+    }
+}
