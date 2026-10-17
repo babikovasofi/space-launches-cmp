@@ -18,4 +18,5 @@
     <string name="pad_coordinates">Coordinates</string>
     <string name="pad_launches_total">Launches total</string>
     <string name="search_hint">Search by name</string>
+    <string name="nothing_found">Nothing found</string>
 </resources>
