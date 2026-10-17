@@ -18,4 +18,5 @@
     <string name="pad_coordinates">Координаты</string>
     <string name="pad_launches_total">Всего пусков</string>
     <string name="search_hint">Поиск по названию</string>
+    <string name="nothing_found">Ничего не найдено</string>
 </resources>
