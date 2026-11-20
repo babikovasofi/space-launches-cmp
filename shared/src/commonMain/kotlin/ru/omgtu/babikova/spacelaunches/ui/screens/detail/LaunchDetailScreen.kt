@@ -1,6 +1,5 @@
 package ru.omgtu.babikova.spacelaunches.ui.screens.detail
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.resources.painterResource
+import coil3.compose.AsyncImage
 import org.jetbrains.compose.resources.stringResource
 import ru.omgtu.babikova.spacelaunches.ui.detail.LaunchDetailIntent
 import ru.omgtu.babikova.spacelaunches.resources.Res
@@ -31,7 +30,6 @@ import ru.omgtu.babikova.spacelaunches.ui.components.FactRow
 import ru.omgtu.babikova.spacelaunches.ui.components.LinkRow
 import ru.omgtu.babikova.spacelaunches.ui.components.StatusChip
 import ru.omgtu.babikova.spacelaunches.ui.model.LaunchDetailUi
-import ru.omgtu.babikova.spacelaunches.ui.model.rocketImage
 
 @Composable
 fun LaunchDetailScreen(
@@ -45,8 +43,8 @@ fun LaunchDetailScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Image(
-            painter = painterResource(rocketImage(launch.rocketConfigurationId)),
+        AsyncImage(
+            model = launch.imageUrl,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier

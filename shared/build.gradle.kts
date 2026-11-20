@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -55,10 +56,24 @@ kotlin {
     
     sourceSets {
         androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.compose.uiTooling)
         }
+        jvmMain.dependencies {
+            implementation(libs.ktor.client.java)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
+        }
         commonMain.dependencies {
+            implementation(libs.ktor.client.core)
+            implementation(libs.kotlinx.serializationJson)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor3)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
@@ -75,6 +90,7 @@ kotlin {
             implementation(libs.kotlin.test)
         }
         jsMain.dependencies {
+            implementation(libs.ktor.client.js)
             implementation(libs.wrappers.browser)
         }
     }
@@ -84,7 +100,31 @@ dependencies {
     androidRuntimeClasspath(libs.compose.uiTooling)
 }
 
+val launchApiUrl = providers.gradleProperty("launchApiUrl").orElse("")
+val generateApiConfig by tasks.registering {
+    val output = layout.buildDirectory.file("generated/apiConfig/launch-api-url.txt")
+    val apiUrl = launchApiUrl
+    inputs.property("launchApiUrl", apiUrl)
+    outputs.file(output)
+
+    doLast {
+        val file = output.get().asFile
+        file.parentFile.mkdirs()
+        file.writeText(apiUrl.get())
+    }
+}
+
+val commonResources = layout.buildDirectory.dir("generated/commonComposeResources")
+val prepareCommonResources by tasks.registering(Sync::class) {
+    from("src/commonMain/composeResources")
+    from(generateApiConfig) {
+        into("files")
+    }
+    into(commonResources)
+}
+
 compose.resources {
+    customDirectory("commonMain", prepareCommonResources.map { commonResources.get() })
     publicResClass = true
     packageOfResClass = "ru.omgtu.babikova.spacelaunches.resources"
 }

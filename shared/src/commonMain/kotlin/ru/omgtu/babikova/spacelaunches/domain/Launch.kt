@@ -9,7 +9,7 @@ data class Launch(
     val rocket: RocketConfiguration,
     val mission: Mission?,
     val pad: LaunchPad,
-    val imageUrl: String,
+    val imageUrl: String?,
 )
 
 data class LaunchStatus(
@@ -58,9 +58,3 @@ data class PadLocation(
     val name: String,
     val countryCode: String,
 )
-
-fun List<Launch>.filterByName(query: String): List<Launch> {
-    val needle = query.trim()
-    if (needle.isEmpty()) return this
-    return filter { it.name.contains(needle, ignoreCase = true) }
-}

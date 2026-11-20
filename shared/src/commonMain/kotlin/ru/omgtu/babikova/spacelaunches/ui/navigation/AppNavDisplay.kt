@@ -13,10 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import ru.omgtu.babikova.spacelaunches.Screen
 import ru.omgtu.babikova.spacelaunches.ui.agency.AgencyViewModel
 import ru.omgtu.babikova.spacelaunches.ui.agency.AgencyViewModelFactory
+import ru.omgtu.babikova.spacelaunches.ui.components.LoadContent
 import ru.omgtu.babikova.spacelaunches.ui.detail.LaunchDetailViewModel
 import ru.omgtu.babikova.spacelaunches.ui.detail.LaunchDetailViewModelFactory
 import ru.omgtu.babikova.spacelaunches.ui.list.LaunchListViewModel
@@ -44,6 +46,7 @@ fun AppNavDisplay(
         backStack = backStack,
         modifier = modifier,
         onBack = { navigator.back() },
+        entryDecorators = listOf(rememberSaveableStateHolderNavEntryDecorator()),
         transitionSpec = { slide(SlideDirection.Start) },
         popTransitionSpec = { slide(SlideDirection.End) },
         predictivePopTransitionSpec = { slide(SlideDirection.End) },
@@ -60,7 +63,9 @@ fun AppNavDisplay(
                     extras = LaunchDetailViewModelFactory.extrasFor(key.id),
                 )
                 val state by viewModel.state.collectAsStateWithLifecycle()
-                state?.let { LaunchDetailScreen(launch = it, onIntent = viewModel::onIntent) }
+                LoadContent(state, onRetry = viewModel::load) {
+                    LaunchDetailScreen(launch = it, onIntent = viewModel::onIntent)
+                }
             }
             entry<Screen.Agency> { key ->
                 val viewModel: AgencyViewModel = viewModel(
@@ -69,7 +74,9 @@ fun AppNavDisplay(
                     extras = AgencyViewModelFactory.extrasFor(key.id),
                 )
                 val state by viewModel.state.collectAsStateWithLifecycle()
-                state?.let { AgencyScreen(agency = it) }
+                LoadContent(state, onRetry = viewModel::load) {
+                    AgencyScreen(agency = it)
+                }
             }
             entry<Screen.Pad> { key ->
                 val viewModel: PadViewModel = viewModel(
@@ -78,7 +85,9 @@ fun AppNavDisplay(
                     extras = PadViewModelFactory.extrasFor(key.id),
                 )
                 val state by viewModel.state.collectAsStateWithLifecycle()
-                state?.let { PadScreen(pad = it) }
+                LoadContent(state, onRetry = viewModel::load) {
+                    PadScreen(pad = it)
+                }
             }
         },
     )

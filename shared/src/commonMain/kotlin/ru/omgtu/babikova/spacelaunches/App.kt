@@ -3,16 +3,20 @@ package ru.omgtu.babikova.spacelaunches
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil3.ImageLoader
+import coil3.compose.setSingletonImageLoaderFactory
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import ru.omgtu.babikova.spacelaunches.ui.agency.AgencyViewModelFactory
 import ru.omgtu.babikova.spacelaunches.data.LaunchRepositoryImpl
+import ru.omgtu.babikova.spacelaunches.data.createApiClient
 import ru.omgtu.babikova.spacelaunches.ui.detail.LaunchDetailViewModelFactory
 import ru.omgtu.babikova.spacelaunches.domain.LaunchRepository
 import ru.omgtu.babikova.spacelaunches.ui.list.LaunchListViewModelFactory
@@ -27,10 +31,19 @@ import ru.omgtu.babikova.spacelaunches.ui.navigation.Navigator
 
 @Composable
 fun App() {
+    setSingletonImageLoaderFactory { context ->
+        ImageLoader.Builder(context).diskCache(null).build()
+    }
+
     var darkTheme by remember { mutableStateOf(false) }
 
+    val client = remember { createApiClient() }
+    DisposableEffect(client) {
+        onDispose { client.close() }
+    }
+    val repository: LaunchRepository = remember { LaunchRepositoryImpl(client) }
+
     AppTheme(darkTheme = darkTheme) {
-        val repository: LaunchRepository = remember { LaunchRepositoryImpl() }
         val navigator = remember { Navigator() }
         val listViewModelFactory = remember { LaunchListViewModelFactory(repository, navigator) }
         val detailViewModelFactory = remember { LaunchDetailViewModelFactory(repository, navigator) }
