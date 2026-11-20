@@ -5,3 +5,5 @@ import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.okhttp.OkHttp
 
 internal actual fun createPlatformClient(config: HttpClientConfig<*>.() -> Unit): HttpClient = HttpClient(OkHttp) { config() }
+
+internal actual suspend fun processInWorker(operation: String, body: String): List<String>? = null

@@ -8,7 +8,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.KSerializer
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import ru.omgtu.babikova.spacelaunches.domain.LaunchPage
 import ru.omgtu.babikova.spacelaunches.domain.LaunchRepository
@@ -17,7 +17,6 @@ import ru.omgtu.babikova.spacelaunches.resources.Res
 private const val PAGE_SIZE = 20
 
 internal class LaunchRepositoryImpl(private val client: HttpClient) : LaunchRepository {
-    private val json = Json { ignoreUnknownKeys = true }
 
     override suspend fun getLaunches(query: String, offset: Int): LaunchPage {
         val body = client.get(apiUrl("launch/")) {
@@ -26,8 +25,8 @@ internal class LaunchRepositoryImpl(private val client: HttpClient) : LaunchRepo
             if (query.isNotBlank()) parameter("search", query.trim())
         }.bodyAsText()
 
+        val page = decodeLaunchPage(body)
         return withContext(Dispatchers.Default) {
-            val page = json.decodeFromString<LaunchPageDto>(body)
             val nextOffset = if (page.next != null && page.results.isNotEmpty()) {
                 offset + page.results.size
             } else {
@@ -38,15 +37,20 @@ internal class LaunchRepositoryImpl(private val client: HttpClient) : LaunchRepo
     }
 
     override suspend fun getLaunch(id: String) =
-        getRecord<LaunchDto, _>("launch/$id/", LaunchDto::toDomain)
+        getRecord("launch/$id/", "launch", LaunchDto.serializer(), LaunchDto::toDomain)
 
     override suspend fun getAgency(id: Int) =
-        getRecord<AgencyDto, _>("agencies/$id/", AgencyDto::toDomain)
+        getRecord("agencies/$id/", "agency", AgencyDto.serializer(), AgencyDto::toDomain)
 
     override suspend fun getPad(id: Int) =
-        getRecord<PadDto, _>("pad/$id/", PadDto::toDomain)
+        getRecord("pad/$id/", "pad", PadDto.serializer(), PadDto::toDomain)
 
-    private suspend inline fun <reified T, R> getRecord(path: String, crossinline map: (T) -> R): R? {
+    private suspend fun <T, R> getRecord(
+        path: String,
+        operation: String,
+        serializer: KSerializer<T>,
+        map: (T) -> R,
+    ): R? {
         val body = try {
             client.get(apiUrl(path)).bodyAsText()
         } catch (exception: ClientRequestException) {
@@ -54,9 +58,7 @@ internal class LaunchRepositoryImpl(private val client: HttpClient) : LaunchRepo
             throw exception
         }
 
-        return withContext(Dispatchers.Default) {
-            map(json.decodeFromString<T>(body))
-        }
+        return map(decodeRecord(operation, serializer, body))
     }
 
     @OptIn(ExperimentalResourceApi::class)

@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.omgtu.babikova.spacelaunches.Screen
+import ru.omgtu.babikova.spacelaunches.data.mergePage
 import ru.omgtu.babikova.spacelaunches.domain.LaunchRepository
 import ru.omgtu.babikova.spacelaunches.ui.LoadState
 import ru.omgtu.babikova.spacelaunches.ui.loadState
@@ -49,7 +50,7 @@ class LaunchListViewModel(
             val content = loadState {
                 val page = repository.getLaunches(query, offset = 0)
                 if (page.items.isEmpty()) null else withContext(Dispatchers.Default) {
-                    LaunchListContent(page.items.map { it.toCardUi() }.distinctBy { it.id }, page.nextOffset)
+                    LaunchListContent(mergePage(emptyList(), page.items.map { it.toCardUi() }) { it.id }, page.nextOffset)
                 }
             }
             _state.value = LaunchListState(query, content)
@@ -67,7 +68,7 @@ class LaunchListViewModel(
             val result = loadState {
                 val page = repository.getLaunches(current.query, offset)
                 withContext(Dispatchers.Default) {
-                    val items = (content.items + page.items.map { it.toCardUi() }).distinctBy { it.id }
+                    val items = mergePage(content.items, page.items.map { it.toCardUi() }) { it.id }
                     LaunchListContent(items, page.nextOffset)
                 }
             }
