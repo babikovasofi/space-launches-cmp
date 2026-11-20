@@ -3,9 +3,10 @@ package ru.omgtu.babikova.spacelaunches.ui.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import ru.omgtu.babikova.spacelaunches.ui.LoadState
+import ru.omgtu.babikova.spacelaunches.ui.loadState
 import ru.omgtu.babikova.spacelaunches.Screen
 import ru.omgtu.babikova.spacelaunches.domain.LaunchRepository
 import ru.omgtu.babikova.spacelaunches.ui.model.LaunchDetailUi
@@ -18,12 +19,17 @@ class LaunchDetailViewModel(
     private val navigator: Navigator,
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<LaunchDetailUi?>(null)
-    val state: StateFlow<LaunchDetailUi?> = _state.asStateFlow()
+    private val _state = MutableStateFlow<LoadState<LaunchDetailUi>>(LoadState.Loading)
+    val state = _state.asStateFlow()
 
     init {
+        load()
+    }
+
+    fun load() {
+        _state.value = LoadState.Loading
         viewModelScope.launch {
-            _state.value = repository.getLaunch(launchId).toDetailUi()
+            _state.value = loadState { repository.getLaunch(launchId)?.toDetailUi() }
         }
     }
 

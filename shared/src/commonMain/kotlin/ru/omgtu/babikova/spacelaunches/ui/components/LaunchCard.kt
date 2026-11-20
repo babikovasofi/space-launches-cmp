@@ -1,6 +1,5 @@
 package ru.omgtu.babikova.spacelaunches.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,9 +17,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.resources.painterResource
+import coil3.compose.AsyncImage
 import ru.omgtu.babikova.spacelaunches.ui.model.LaunchCardUi
-import ru.omgtu.babikova.spacelaunches.ui.model.rocketImage
 
 @Composable
 fun LaunchCard(
@@ -33,8 +31,8 @@ fun LaunchCard(
             modifier = Modifier.padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                painter = painterResource(rocketImage(card.rocketConfigurationId)),
+            AsyncImage(
+                model = card.imageUrl,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

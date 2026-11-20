@@ -8,7 +8,7 @@ data class LaunchCardUi(
     val providerName: String,
     val launchTime: String,
     val statusName: String,
-    val rocketConfigurationId: Int,
+    val imageUrl: String?,
 )
 
 fun Launch.toCardUi() = LaunchCardUi(
@@ -17,5 +17,5 @@ fun Launch.toCardUi() = LaunchCardUi(
     providerName = provider.name,
     launchTime = formatLaunchTime(net),
     statusName = status.name,
-    rocketConfigurationId = rocket.id,
+    imageUrl = imageUrl,
 )
